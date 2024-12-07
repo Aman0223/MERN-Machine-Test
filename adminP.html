@@ -1,0 +1,191 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>MERN Stack Employee Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+</head>
+<body class="font-roboto bg-gray-100">
+
+<!-- Login Page -->
+<div id="loginPage" class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div class="flex justify-center mb-4">
+      <img alt="Company Logo" class="w-24 h-24" height="100" src="https://storage.googleapis.com/a1aa/image/q1e4LSosGxyNC6nvNJ6PejhhJFRH0fbJv6h4Wl6cPftfI7AfE.jpg" width="100"/>
+    </div>
+    <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+    <form id="loginForm">
+      <div class="mb-4">
+        <label class="block text-gray-700" for="username">User Name</label>
+        <input class="w-full px-3 py-2 border rounded-lg" id="username" name="username" required type="text"/>
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700" for="password">Password</label>
+        <input class="w-full px-3 py-2 border rounded-lg" id="password" name="password" required type="password"/>
+      </div>
+      <button class="w-full bg-blue-500 text-white py-2 rounded-lg" type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard" class="min-h-screen bg-gray-100 hidden">
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img alt="Company Logo" class="w-12 h-12" height="50" src="https://storage.googleapis.com/a1aa/image/q1e4LSosGxyNC6nvNJ6PejhhJFRH0fbJv6h4Wl6cPftfI7AfE.jpg" width="50"/>
+        <nav class="ml-6">
+          <a class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium" href="#" onclick="showPage('createEmployee')">Create Employee</a>
+          <a class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium" href="#" onclick="showPage('employeeList')">Employee List</a>
+        </nav>
+      </div>
+      <div class="flex items-center">
+        <span class="text-gray-700 mr-4">Hukum Gupta</span>
+        <a class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium" href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Welcome to Admin Panel</h1>
+  </main>
+</div>
+
+<!-- Create Employee -->
+<div id="createEmployee" class="min-h-screen bg-gray-100 hidden">
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img alt="Company Logo" class="w-12 h-12" height="50" src="https://storage.googleapis.com/a1aa/image/q1e4LSosGxyNC6nvNJ6PejhhJFRH0fbJv6h4Wl6cPftfI7AfE.jpg" width="50"/>
+        <nav class="ml-6">
+          <a class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium" href="#" onclick="showPage('dashboard')">Home</a>
+          <a class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium" href="#" onclick="showPage('employeeList')">Employee List</a>
+        </nav>
+      </div>
+      <div class="flex items-center">
+        <span class="text-gray-700 mr-4">Hukum Gupta</span>
+        <a class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium" href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Create Employee</h1>
+    <form id="createEmployeeForm">
+      <div class="mb-4">
+        <label class="block text-gray-700" for="name">Name</label>
+        <input class="w-full px-3 py-2 border rounded-lg" id="name" name="name" required type="text"/>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700" for="email">Email</label>
+        <input class="w-full px-3 py-2 border rounded-lg" id="email" name="email" required type="email"/>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700" for="mobile">Mobile No</label>
+        <input class="w-full px-3 py-2 border rounded-lg" id="mobile" name="mobile" required type="text"/>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700" for="designation">Designation</label>
+        <select class="w-full px-3 py-2 border rounded-lg" id="designation" name="designation" required>
+          <option value="HR">HR</option>
+          <option value="Manager">Manager</option>
+          <option value="Sales">Sales</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Gender</label>
+        <div class="flex items-center">
+          <input class="mr-2" id="male" name="gender" required type="radio" value="Male"/>
+          <label class="mr-4" for="male">Male</label>
+          <input class="mr-2" id="female" name="gender" required type="radio" value="Female"/>
+          <label for="female">Female</label>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Course</label>
+        <div class="flex items-center">
+          <input class="mr-2" id="mca" name="course" type="checkbox" value="MCA"/>
+          <label class="mr-4" for="mca">MCA</label>
+          <input class="mr-2" id="bca" name="course" type="checkbox" value="BCA"/>
+          <label class="mr-4" for="bca">BCA</label>
+          <input class="mr-2" id="bsc" name="course" type="checkbox" value="BSC"/>
+          <label for="bsc">BSC</label>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700" for="image">Img Upload</label>
+        <input accept="image/png, image/jpeg" class="w-full px-3 py-2 border rounded-lg" id="image" name="image" required type="file"/>
+      </div>
+      <button class="w-full bg-blue-500 text-white py-2 rounded-lg" type="submit">Submit</button>
+    </form>
+  </main>
+</div>
+
+<!-- Employee List -->
+<div id="employeeList" class="min-h-screen bg-gray-100 hidden">
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img alt="Company Logo" class="w-12 h-12" height="50" src="https://storage.googleapis.com/a1aa/image/q1e4LSosGxyNC6nvNJ6PejhhJFRH0fbJv6h4Wl6cPftfI7AfE.jpg" width="50"/>
+        <nav class="ml-6">
+          <a class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium" href="#" onclick="showPage('dashboard')">Home</a>
+          <a class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium" href="#" onclick="showPage('createEmployee')">Create Employee</a>
+        </nav>
+      </div>
+      <div class="flex items-center">
+        <span class="text-gray-700 mr-4">Hukum Gupta</span>
+        <a class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium" href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Employee List</h1>
+    <!-- Table goes here -->
+  </main>
+</div>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Perform login validation here
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    if (username === 'admin' && password === 'password') {
+      localStorage.setItem('isLoggedIn', 'true');
+      showPage('dashboard');
+    } else {
+      alert('Invalid login details');
+    }
+  });
+
+  document.getElementById('createEmployeeForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Perform form submission logic here
+    alert('Employee created successfully');
+    showPage('employeeList');
+  });
+
+  function showPage(pageId) {
+    const pages = ['loginPage', 'dashboard', 'createEmployee', 'employeeList'];
+    pages.forEach(page => {
+      document.getElementById(page).classList.add('hidden');
+    });
+    document.getElementById(pageId).classList.remove('hidden');
+  }
+
+  function logout() {
+    localStorage.removeItem('isLoggedIn');
+    showPage('loginPage');
+  }
+
+  // Check if user is already logged in
+  if (localStorage.getItem('isLoggedIn') === 'true') {
+    showPage('dashboard');
+  } else {
+    showPage('loginPage');
+  }
+</script>
+
+</body>
+</html>
